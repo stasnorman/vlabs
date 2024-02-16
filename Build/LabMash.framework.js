@@ -1295,7 +1295,7 @@ function _emscripten_asm_const_id(code, a0) {
  return ASM_CONSTS[code](a0);
 }
 STATIC_BASE = GLOBAL_BASE;
-STATICTOP = STATIC_BASE + 3424400;
+STATICTOP = STATIC_BASE + 3435088;
 __ATINIT__.push({
  func: (function() {
   __GLOBAL__sub_I_AccessibilityScriptingClasses_cpp();
@@ -3369,7 +3369,7 @@ __ATINIT__.push({
   ___emscripten_environ_constructor();
  })
 });
-var STATIC_BUMP = 3424400;
+var STATIC_BUMP = 3435088;
 Module["STATIC_BASE"] = STATIC_BASE;
 Module["STATIC_BUMP"] = STATIC_BUMP;
 var tempDoublePtr = STATICTOP;
@@ -15379,6 +15379,11 @@ function nullFunc_vidddddi(x) {
  err("Build with ASSERTIONS=2 for more info.");
  abort(x);
 }
+function nullFunc_vidddi(x) {
+ err("Invalid function pointer called with signature 'vidddi'. Perhaps this is an invalid value (e.g. caused by calling a virtual method on a NULL pointer)? Or calling a function with an incorrect type, which will fail? (it is worth building your source files with -Werror (warnings are errors), as warnings can indicate undefined behavior which can cause this)");
+ err("Build with ASSERTIONS=2 for more info.");
+ abort(x);
+}
 function nullFunc_viddii(x) {
  err("Invalid function pointer called with signature 'viddii'. Perhaps this is an invalid value (e.g. caused by calling a virtual method on a NULL pointer)? Or calling a function with an incorrect type, which will fail? (it is worth building your source files with -Werror (warnings are errors), as warnings can indicate undefined behavior which can cause this)");
  err("Build with ASSERTIONS=2 for more info.");
@@ -16004,8 +16009,8 @@ function nullFunc_vjji(x) {
  err("Build with ASSERTIONS=2 for more info.");
  abort(x);
 }
-Module["wasmTableSize"] = 107279;
-Module["wasmMaxTableSize"] = 107279;
+Module["wasmTableSize"] = 107287;
+Module["wasmMaxTableSize"] = 107287;
 function invoke_dddi(index, a1, a2, a3) {
  var sp = stackSave();
  try {
@@ -17836,6 +17841,16 @@ function invoke_vidddddi(index, a1, a2, a3, a4, a5, a6, a7) {
   Module["setThrew"](1, 0);
  }
 }
+function invoke_vidddi(index, a1, a2, a3, a4, a5) {
+ var sp = stackSave();
+ try {
+  Module["dynCall_vidddi"](index, a1, a2, a3, a4, a5);
+ } catch (e) {
+  stackRestore(sp);
+  if (typeof e !== "number" && e !== "longjmp") throw e;
+  Module["setThrew"](1, 0);
+ }
+}
 function invoke_viddii(index, a1, a2, a3, a4, a5) {
  var sp = stackSave();
  try {
@@ -19277,6 +19292,7 @@ Module.asmLibraryArg = {
  "nullFunc_vid": nullFunc_vid,
  "nullFunc_vidddddddii": nullFunc_vidddddddii,
  "nullFunc_vidddddi": nullFunc_vidddddi,
+ "nullFunc_vidddi": nullFunc_vidddi,
  "nullFunc_viddii": nullFunc_viddii,
  "nullFunc_vidi": nullFunc_vidi,
  "nullFunc_vidiii": nullFunc_vidiii,
@@ -19585,6 +19601,7 @@ Module.asmLibraryArg = {
  "invoke_vid": invoke_vid,
  "invoke_vidddddddii": invoke_vidddddddii,
  "invoke_vidddddi": invoke_vidddddi,
+ "invoke_vidddi": invoke_vidddi,
  "invoke_viddii": invoke_viddii,
  "invoke_vidi": invoke_vidi,
  "invoke_vidiii": invoke_vidiii,
@@ -27278,6 +27295,11 @@ var dynCall_vidddddi = Module["dynCall_vidddddi"] = (function() {
  assert(runtimeInitialized, "you need to wait for the runtime to be ready (e.g. wait for main() to be called)");
  assert(!runtimeExited, "the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)");
  return Module["asm"]["dynCall_vidddddi"].apply(null, arguments);
+});
+var dynCall_vidddi = Module["dynCall_vidddi"] = (function() {
+ assert(runtimeInitialized, "you need to wait for the runtime to be ready (e.g. wait for main() to be called)");
+ assert(!runtimeExited, "the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)");
+ return Module["asm"]["dynCall_vidddi"].apply(null, arguments);
 });
 var dynCall_viddii = Module["dynCall_viddii"] = (function() {
  assert(runtimeInitialized, "you need to wait for the runtime to be ready (e.g. wait for main() to be called)");
